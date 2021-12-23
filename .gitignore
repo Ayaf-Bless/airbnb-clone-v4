@@ -222,6 +222,7 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+TRACK.txt
 
 # PyCharm
 #  JetBrains specific template is maintainted in a separate JetBrains.gitignore that can
