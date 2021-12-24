@@ -17,19 +17,33 @@ class AbstractItem(core_model.Core):
 
 
 class RoomType(AbstractItem):
-    pass
+    class Meta:
+        verbose_name = "Room Type"
+        ordering = ["name"]
+
+
+class Photo(core_model.Core):
+    caption = models.CharField(max_length=140)
+    file = models.ImageField()
+    room = models.ForeignKey(to="Room", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.caption
 
 
 class Amenity(AbstractItem):
-    pass
+    class Meta:
+        verbose_name_plural = "Amenities"
 
 
 class HouseRule(AbstractItem):
-    pass
+    class Meta:
+        verbose_name = "House Rule"
 
 
 class Facility(AbstractItem):
-    pass
+    class Meta:
+        verbose_name_plural = "Facilities"
 
 
 class Room(core_model.Core):
@@ -49,9 +63,9 @@ class Room(core_model.Core):
     instant_book = models.BooleanField(default=False)
     host = models.ForeignKey(to=users_model.User, on_delete=models.CASCADE)
     room_type = models.ForeignKey(to=RoomType, on_delete=models.SET_NULL, null=True)
-    amenities = models.ManyToManyField(Amenity)
-    facilities = models.ManyToManyField(Facility)
-    house_rules = models.ManyToManyField(HouseRule)
+    amenities = models.ManyToManyField(Amenity, blank=True)
+    facilities = models.ManyToManyField(Facility, blank=True)
+    house_rules = models.ManyToManyField(HouseRule, blank=True)
 
     def __str__(self):
         return self.name
