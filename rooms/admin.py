@@ -18,6 +18,9 @@ class RoomAdmin(admin.ModelAdmin):
                     "host",)
     list_filter = ("host", "country", "city")
     search_fields = ("city", "host__username")
+    filter_horizontal = ("amenities",
+                         "facilities",
+                         "house_rules",)
 
 
 @admin.register(models.Photo)
