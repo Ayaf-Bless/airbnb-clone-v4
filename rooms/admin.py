@@ -9,7 +9,15 @@ class ItemAdmin(admin.ModelAdmin):
 
 @admin.register(models.Room)
 class RoomAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("name",
+                    "description",
+                    "country",
+                    "city",
+                    "price",
+                    "guests",
+                    "host",)
+    list_filter = ("host", "country", "city")
+    search_fields = ("city", "host__username")
 
 
 @admin.register(models.Photo)
