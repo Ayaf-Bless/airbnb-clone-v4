@@ -15,12 +15,21 @@ class RoomAdmin(admin.ModelAdmin):
                     "city",
                     "price",
                     "guests",
-                    "host",)
+                    "host",
+                    "count_amenities")
     list_filter = ("host", "country", "city")
     search_fields = ("city", "host__username")
     filter_horizontal = ("amenities",
                          "facilities",
                          "house_rules",)
+
+    # ordering = ("name", "price")
+    ordering = ("name", "city")
+
+    def count_amenities(self, obj):
+        return obj.amenities.count()
+
+
 
 
 @admin.register(models.Photo)
