@@ -69,3 +69,10 @@ class Room(core_model.Core):
 
     def __str__(self):
         return self.name
+
+    def total_avg(self):
+        all_reviews = self.reviews.all()
+        all_ratings = 0
+        for review in all_reviews:
+            all_ratings += review.get_avg()
+        return round(all_ratings / len(all_reviews),2)

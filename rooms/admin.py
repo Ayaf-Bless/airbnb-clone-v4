@@ -20,7 +20,9 @@ class RoomAdmin(admin.ModelAdmin):
                     "guests",
                     "host",
                     "count_amenities",
-                    "count_photo")
+                    "count_photo",
+                    "total_avg"
+                    )
     list_filter = ("host", "country", "city")
     search_fields = ("city", "host__username")
     filter_horizontal = ("amenities",
