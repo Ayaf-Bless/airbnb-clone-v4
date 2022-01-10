@@ -23,13 +23,12 @@ class RoomAdmin(admin.ModelAdmin):
                          "facilities",
                          "house_rules",)
 
-    # ordering = ("name", "price")
     ordering = ("name", "city")
 
     def count_amenities(self, obj):
         return obj.amenities.count()
 
-
+    count_amenities.short_description = "number of amenities"
 
 
 @admin.register(models.Photo)

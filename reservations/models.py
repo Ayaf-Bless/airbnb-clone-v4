@@ -14,8 +14,8 @@ class Reservation(core_models.Core):
     )
 
     status = models.CharField(max_length=12, choices=STATUS_CHOICES, default=STATUS_PENDING)
-    guest = models.ForeignKey(to="users.User", on_delete=models.CASCADE)
-    room = models.ForeignKey(to="rooms.Room", on_delete=models.CASCADE)
+    guest = models.ForeignKey(to="users.User", on_delete=models.CASCADE,related_name="reservation")
+    room = models.ForeignKey(to="rooms.Room", on_delete=models.CASCADE, related_name="reservation")
     check_in = models.DateField()
     check_out = models.DateField()
 
