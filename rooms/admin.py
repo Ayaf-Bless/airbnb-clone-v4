@@ -3,6 +3,10 @@ from django.utils.html import mark_safe
 from . import models
 
 
+class PhotoInline(admin.TabularInline):
+    model = models.Photo
+
+
 @admin.register(models.RoomType, models.Amenity, models.HouseRule, models.Facility)
 class ItemAdmin(admin.ModelAdmin):
     list_display = ("name", "used_by",)
@@ -24,6 +28,8 @@ class RoomAdmin(admin.ModelAdmin):
                     "count_photo",
                     "total_avg"
                     )
+    inlines = [PhotoInline]
+    raw_id_fields = ("host",)
     list_filter = ("host", "country", "city")
     search_fields = ("city", "host__username")
     filter_horizontal = ("amenities",
@@ -39,6 +45,9 @@ class RoomAdmin(admin.ModelAdmin):
         return obj.photos.count()
 
     count_amenities.short_description = "number of amenities"
+
+
+# @admin.register(models.Room)
 
 
 @admin.register(models.Photo)
