@@ -9,3 +9,8 @@ class List(core_models.Core):
 
     def __str__(self):
         return self.name
+
+    def count_rooms(self):
+        return self.rooms.count()
+
+    count_rooms.short_description = "number of rooms"
