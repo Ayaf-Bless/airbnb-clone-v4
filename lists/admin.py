@@ -6,3 +6,4 @@ from . import models
 class ListAdmin(admin.ModelAdmin):
     list_display = ("name", "user", "count_rooms")
     search_fields = ("^name",)
+    filter_horizontal = ("rooms",)
