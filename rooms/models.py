@@ -24,7 +24,7 @@ class RoomType(AbstractItem):
 
 class Photo(core_model.Core):
     caption = models.CharField(max_length=140)
-    file = models.ImageField()
+    file = models.ImageField(upload_to="room_photo")
     room = models.ForeignKey(to="Room", on_delete=models.CASCADE, related_name="photos")
 
     def __str__(self):
