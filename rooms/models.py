@@ -71,7 +71,7 @@ class Room(core_model.Core):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.city =  str.capitalize(self.city)
+        self.city = str.capitalize(self.city)
         super().save(*args, **kwargs)
 
     def total_avg(self):
