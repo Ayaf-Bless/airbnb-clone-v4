@@ -70,6 +70,10 @@ class Room(core_model.Core):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        self.city =  str.capitalize(self.city)
+        super().save(*args, **kwargs)
+
     def total_avg(self):
         all_reviews = self.reviews.all()
         all_ratings = 0
