@@ -4,7 +4,7 @@ from rooms import models as room_models
 
 
 class Command(BaseCommand, ABC):
-    help = "this tell me anything"
+    help = "this creates amenities"
 
     # def add_arguments(self, parser):
     #     parser.add_argument("--times", help="how many times should repeat")
