@@ -8,7 +8,7 @@ class Command(BaseCommand, ABC):
     help = "this creates many users"
 
     def add_arguments(self, parser):
-        parser.add_argument("--number",type=int, help="how many users do you want to create", default=2)
+        parser.add_argument("--number", type=int, help="how many users do you want to create", default=2)
 
     def handle(self, *args, **options):
         seeder = Seed.seeder()
