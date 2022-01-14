@@ -37,8 +37,10 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-THIRD_PARTY_APPS = [
-    "django-countries"
+THIRD_PARTY_APPS = [ 
+    "django-countries",
+    "django_seed",
+    "psycopg2"
 ]
 
 PROJECT_APPS = [
