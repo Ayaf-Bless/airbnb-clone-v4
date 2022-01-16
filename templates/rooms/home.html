@@ -8,5 +8,16 @@
     {%for room in rooms%}
     <h1>{{room.name}}</h1>
     {% endfor %}  
+    <h5>
+        {% if page is not 1  %}
+            <a href="?page={{page|add:-1}}">previous</a>
+        {% endif %}
+        page {{page}} of {{page_count}}
+        {% if page is not page_count %}
+            <a href="?page={{page|add:1}}">next</a>
+        {% endif %}   
+    </h5>
+    
+   
 {% endblock content %}
 
