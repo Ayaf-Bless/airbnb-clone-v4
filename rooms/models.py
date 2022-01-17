@@ -1,5 +1,6 @@
 from django.db import models
 from django_countries.fields import CountryField
+from django.urls import reverse
 # own imports
 from core import models as core_model
 from users import models as users_model
@@ -69,6 +70,9 @@ class Room(core_model.Core):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("rooms:detail", kwargs={"pk": self.pk})
 
     def save(self, *args, **kwargs):
         self.city = str.capitalize(self.city)
