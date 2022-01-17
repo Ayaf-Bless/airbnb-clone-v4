@@ -1,6 +1,6 @@
-# from django.http import HttpRequest, HttpResponse
-# from django.shortcuts import render, redirect
-# from django.core.paginator import Paginator, EmptyPage
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render, redirect
+from django.core.paginator import Paginator, EmptyPage
 
 from django.views.generic import ListView
 from . import models as room_models
@@ -15,7 +15,13 @@ class HomeView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         contex = super().get_context_data(**kwargs)
         contex["he"] = "hello"
-        return contex 
+        return contex
+
+
+def room_detail(request: HttpResponse, pk):
+    print(pk)
+    return render(request, "rooms/detail.html")
+
 #
 # # Create your views here.
 # def get_rooms(request: HttpRequest):
