@@ -1,4 +1,4 @@
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse,Http404
 from django.shortcuts import render, redirect, reverse
 from django.core.paginator import Paginator, EmptyPage
 
@@ -23,7 +23,7 @@ def room_detail(request: HttpResponse, pk):
         room = room_models.Room.objects.get(pk=int(pk))
         return render(request, "rooms/detail.html", {"room": room})
     except room_models.Room.DoesNotExist:
-        return redirect(reverse("core:home"))
+        raise Http404()
 
 #
 # # Create your views here.
