@@ -2,7 +2,7 @@ from django.http import HttpRequest, HttpResponse,Http404
 from django.shortcuts import render, redirect, reverse
 from django.core.paginator import Paginator, EmptyPage
 
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from . import models as room_models
 
 
@@ -18,12 +18,15 @@ class HomeView(ListView):
         return contex
 
 
-def room_detail(request: HttpResponse, pk):
-    try:
-        room = room_models.Room.objects.get(pk=int(pk))
-        return render(request, "rooms/detail.html", {"room": room})
-    except room_models.Room.DoesNotExist:
-        raise Http404()
+class RoomDetail(DetailView):
+    model = room_models.Room
+
+# def room_detail(request: HttpResponse, pk):
+#     try:
+#         room = room_models.Room.objects.get(pk=int(pk))
+#         return render(request, "rooms/detail.html", {"room": room})
+#     except room_models.Room.DoesNotExist:
+#         raise Http404()
 
 #
 # # Create your views here.
