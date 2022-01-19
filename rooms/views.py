@@ -4,6 +4,7 @@ from django.core.paginator import Paginator, EmptyPage
 
 from django.views.generic import ListView, DetailView
 from . import models as room_models
+from django_countries import countries
 
 
 class HomeView(ListView):
@@ -23,9 +24,9 @@ class RoomDetail(DetailView):
 
 
 def search(request: HttpRequest):
-    city = str.capitalize(request.GET.get("city"))
-
-    return render(request, "rooms/search.html",{"city": city})
+    city = str.capitalize(request.GET.get("city", "Anywhere"))
+    room_types = room_models.RoomType.objects.all()
+    return render(request, "rooms/search.html", {"city": city, "countries": countries, "room_types": room_types})
 # def room_detail(request: HttpResponse, pk):
 #     try:
 #         room = room_models.Room.objects.get(pk=int(pk))
