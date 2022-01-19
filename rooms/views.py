@@ -1,4 +1,4 @@
-from django.http import HttpRequest, HttpResponse,Http404
+from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render, redirect, reverse
 from django.core.paginator import Paginator, EmptyPage
 
@@ -21,6 +21,11 @@ class HomeView(ListView):
 class RoomDetail(DetailView):
     model = room_models.Room
 
+
+def search(request: HttpRequest):
+    city = str.capitalize(request.GET.get("city"))
+
+    return render(request, "rooms/search.html",{"city": city})
 # def room_detail(request: HttpResponse, pk):
 #     try:
 #         room = room_models.Room.objects.get(pk=int(pk))
