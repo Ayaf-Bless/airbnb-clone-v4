@@ -15,17 +15,18 @@
         </div>
         <div>
             <label for="country">countries</label>
-            <select name="country" id="country">
+            <select name="country" id="country" value={{country}}>
                 {% for c in countries %}
-                    <option value={{c.code}}>{{c.name}}</option>
+                    <option value={{c.code}} {% if c.code == country %}selected{% endif %}>{{c.name}}</option>
                 {% endfor %}
             </select>
         </div>
         <div>
             <label for="room_types">room types</label>
             <select name="room_types" id="room_types">
+                <option value="0" {% if room_type == 0 %}selected{% endif %}>Any kind</option>
                 {% for r in room_types %}
-                    <option value={{r.pk}}>{{r.name}}</option>
+                    <option value={{r.pk}} {% if room_type == r.pk %}selected{% endif %}>{{r.name}}</option>
                 {% endfor %}
             </select>
         </div>
