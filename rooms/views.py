@@ -1,7 +1,6 @@
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.core.paginator import Paginator, EmptyPage
-
 
 from django.views.generic import ListView
 from . import models as room_models
@@ -20,9 +19,11 @@ class HomeView(ListView):
 
 
 def room_detail(request: HttpResponse, pk):
-    room = room_models.Room.objects.get(pk=int(pk))
-    print(room)
-    return render(request, "rooms/detail.html",{"room": room})
+    try:
+        room = room_models.Room.objects.get(pk=int(pk))
+        return render(request, "rooms/detail.html", {"room": room})
+    except room_models.Room.DoesNotExist:
+        return redirect(reverse("core:home"))
 
 #
 # # Create your views here.
