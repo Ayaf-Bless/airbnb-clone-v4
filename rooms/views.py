@@ -27,13 +27,29 @@ def search(request: HttpRequest):
     city = str.capitalize(request.GET.get("city", "Anywhere"))
     country = request.GET.get("country", "AF")
     room_type = int(request.GET.get("room_types", 0))
-    room_types = room_models.RoomType.objects.all()
+    price = int(request.GET.get("price", 0))
+    guests = int(request.GET.get("guests", 0))
+    bedroom = int(request.GET.get("bedroom", 0))
+    beds = int(request.GET.get("beds", 0))
+    baths = int(request.GET.get("baths", 0))
 
-    choices = {"countries": countries,
-               "room_types": room_types, }
     form = {"city": city,
             "room_type": room_type,
-            "country": country}
+            "country": country,
+            "price": price,
+            "guests": guests,
+            "bedroom": bedroom,
+            "beds": beds,
+            "baths": baths, }
+
+    room_types = room_models.RoomType.objects.all()
+    amenities = room_models.Amenity.objects.all()
+    falities = room_models.Facility.objects.all()
+
+    choices = {"countries": countries,
+               "room_types": room_types, "amenities": amenities,
+               "facilities": falities,
+               }
     return render(request, "rooms/search.html",
                   {
                       **choices, **form
