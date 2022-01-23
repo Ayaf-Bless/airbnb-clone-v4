@@ -17,5 +17,7 @@ class SearchForm(forms.Form):
     baths = forms.IntegerField(required=False)
     instant_book = forms.BooleanField(required=False)
     super_host = forms.BooleanField(required=False)
-    amenities = forms.ModelMultipleChoiceField(queryset=room_models.Amenity.objects.all(), widget=forms.CheckboxSelectMultiple())
-    facilities = forms.ModelMultipleChoiceField(queryset=room_models.Facility.objects.all(), widget=forms.CheckboxSelectMultiple())
+    amenities = forms.ModelMultipleChoiceField(queryset=room_models.Amenity.objects.all(),
+                                               widget=forms.CheckboxSelectMultiple(), required=False)
+    facilities = forms.ModelMultipleChoiceField(queryset=room_models.Facility.objects.all(),
+                                                widget=forms.CheckboxSelectMultiple(), required=False)
