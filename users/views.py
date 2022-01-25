@@ -11,6 +11,7 @@ class LoginView(FormView):
     template_name = "users/login.html"
     form_class = forms.LoginForm
     success_url = reverse_lazy("core:home")
+
     def form_valid(self, form):
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")
@@ -37,3 +38,10 @@ class LoginView(FormView):
 def log_out(request):
     logout(request=request)
     return redirect(reverse("core:home"))
+
+
+class SignUpView(FormView):
+    form_class = forms.SignUpForm
+    success_url = reverse_lazy("core:home")
+    template_name = "users/signup.html"
+
