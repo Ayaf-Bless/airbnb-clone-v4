@@ -2,7 +2,7 @@
     <ul>
         <li>
             {% if user.is_authenticated %}
-            <a href="{% url "users:login"%}">logout</a>
+            <a href="{% url "users:logout"%}">logout</a>
             {% else %}
             <a href="{% url "users:login"%}">login</a>
             {% endif %}

@@ -17,7 +17,12 @@ class LoginView(View):
             password = form.cleaned_data.get("password")
             user = authenticate(request=request, username=email, password=password)
             if user is not None:
-                login(request=request,user=user)
+                login(request=request, user=user)
                 return redirect(reverse("core:home"))
         return render(request, template_name="users/login.html", context={"form": form})
+
+
+def log_out(request):
+    logout(request=request)
+    return redirect(reverse("core:home"))
 
