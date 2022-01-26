@@ -18,21 +18,7 @@ class LoginView(FormView):
         user = authenticate(request=self.request, username=email, password=password)
         if user is not None:
             login(request=self.request, user=user)
-        return super().form_valid(form=form)
-    # def get(self, request):
-    #     form = forms.LoginForm(initial={"email": "blessambel1@gmail.com"})
-    #     return render(request, template_name="users/login.html", context={"form": form})
-    #
-    # def post(self, request):
-    #     form = forms.LoginForm(request.POST)
-    #     if form.is_valid():
-    #         email = form.cleaned_data.get("email")
-    #         password = form.cleaned_data.get("password")
-    #         user = authenticate(request=request, username=email, password=password)
-    #         if user is not None:
-    #             login(request=request, user=user)
-    #             return redirect(reverse("core:home"))
-    #     return render(request, template_name="users/login.html", context={"form": form})
+        return super().form_valid(form)
 
 
 def log_out(request):
@@ -44,4 +30,12 @@ class SignUpView(FormView):
     form_class = forms.SignUpForm
     success_url = reverse_lazy("core:home")
     template_name = "users/signup.html"
-
+    
+    def form_valid(self, form):
+        form.save()
+        email = form.cleaned_data.get("email")
+        password = form.cleaned_data.get("password")
+        user = authenticate(request=self.request, username=email, password=password)
+        if user is not None:
+            login(request=self.request, user=user)
+        return super().form_valid(form)

@@ -42,3 +42,9 @@ class SignUpForm(forms.Form):
             raise forms.ValidationError("your passwords do not match")
         else:
             return password
+
+    def save(self):
+        first_name = self.cleaned_data.get("first_name")
+        last_name = self.cleaned_data.get("last_name")
+        email = self.cleaned_data.get("email")
+        password = self.cleaned_data.get("password")
