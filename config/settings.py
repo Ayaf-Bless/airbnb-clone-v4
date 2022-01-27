@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!&2m4fwo$ojxg949fp!y2r^$-vj-g2d=k9)jw#5089yq9sypco'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -138,3 +138,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = "/media/"
+
+
+# EMAIL config
+EMAI_HOST = os.environ.get("MAILGUN_EMAI_HOST")
+EMAIL_PORT =  os.environ.get("MAILGUN_EMAIL_PORT")
+EMAIL_HOST_USER =  os.environ.get("MAILGUN_EMAIL_HOST_USER") 
+EMAIL_HOST_PASSWORD =  os.environ.get("MAILGUN_EMAIL_HOST_PASSWORD")
