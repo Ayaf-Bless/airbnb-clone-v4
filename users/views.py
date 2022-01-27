@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, reverse
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect, render, reverse
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import FormView
-from django.contrib.auth import authenticate, login, logout
+
 from . import forms
 
 
@@ -30,7 +31,7 @@ class SignUpView(FormView):
     form_class = forms.SignUpForm
     success_url = reverse_lazy("core:home")
     template_name = "users/signup.html"
-    
+
     def form_valid(self, form):
         form.save()
         email = form.cleaned_data.get("email")
