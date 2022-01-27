@@ -139,9 +139,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = "/media/"
 
-
 # EMAIL config
-EMAI_HOST = os.environ.get("MAILGUN_EMAI_HOST")
-EMAIL_PORT =  os.environ.get("MAILGUN_EMAIL_PORT")
-EMAIL_HOST_USER =  os.environ.get("MAILGUN_EMAIL_HOST_USER") 
-EMAIL_HOST_PASSWORD =  os.environ.get("MAILGUN_EMAIL_HOST_PASSWORD")
+EMAIL_HOST = os.environ.get("MAILGUN_EMAIL_HOST")
+EMAIL_PORT = os.environ.get("MAILGUN_EMAIL_PORT")
+EMAIL_HOST_USER = os.environ.get("MAILGUN_EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_EMAIL_HOST_PASSWORD")
+EMAIL_FROM = os.environ.get("MAILGUN_EMAIL_FROM")
