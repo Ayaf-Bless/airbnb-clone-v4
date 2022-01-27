@@ -32,3 +32,5 @@ class User(AbstractUser):
         choices=CURRENCY_CHOICES, max_length=5, blank=True, default=CURRENCY_USD
     )
     super_host = models.BooleanField(default=False)
+    email_confirmed = models.BooleanField(default=False)
+    email_token = models.CharField(max_length=120,default="", blank=True)
