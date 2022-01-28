@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+
 from . import models
 
 
@@ -17,12 +18,25 @@ class CustomUserAdmin(UserAdmin):
                     "birth_date",
                     "language",
                     "currency",
-                    "super_host"
+                    "super_host",
+                    "login_method"
                 )
             },
         ),
     )
     list_display = (
-        "username", "first_name", "last_name", "email", "is_active", "language", "currency", "super_host", "is_staff",
-        "is_superuser", "email_verified", "email_token")
+        "username",
+        "first_name",
+        "last_name",
+        "email",
+        "is_active",
+        "language",
+        "currency",
+        "super_host",
+        "is_staff",
+        "is_superuser",
+        "email_verified",
+        "email_token",
+        "login_method"
+    )
     list_filter = UserAdmin.list_filter + ("super_host",)
