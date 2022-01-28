@@ -33,7 +33,7 @@ class User(AbstractUser):
 
     LOGIN_CHOICES = ((LOGIN_EMAIL, "email"), (LOGIN_GITHUB, "github"), (LOGIN_KAKAO, "kakao"))
 
-    bio = models.TextField(blank=True)
+    bio = models.TextField(blank=True, null=True)
     avatar = models.ImageField(blank=True, upload_to="avatars")
     gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
     birth_date = models.DateField(blank=True, null=True)
