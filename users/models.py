@@ -4,6 +4,8 @@ from django.db import models
 import uuid
 import hashlib
 from django.conf import settings
+from django.utils.html import strip_tags
+from django.template.loader import render_to_string
 
 
 class User(AbstractUser):
@@ -40,15 +42,17 @@ class User(AbstractUser):
     email_token = models.CharField(max_length=20, default="", blank=True)
 
     def verify_email(self):
-        if self.email_verified is not False:
+        if self.email_verified is not True:
             token = uuid.uuid4().hex[:20]
             self.email_token = hashlib.sha224(b"{token}").hexdigest()
+            html_message = render_to_string("emails/verify_email.html", {"token": token})
             send_mail(
                 'Verify your account',
-                f'verify your email. this is your secret: {token}',
+                strip_tags(html_message),
                 settings.EMAIL_FROM,
-                [self.email],
+                ["blessambel1@gmail.com"],
                 fail_silently=False,
+                html_message=html_message
             )
 
         return
