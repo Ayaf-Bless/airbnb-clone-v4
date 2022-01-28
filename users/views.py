@@ -3,6 +3,8 @@ from django.shortcuts import redirect, render, reverse
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import FormView
+import hashlib
+from . import models
 
 from . import forms
 
@@ -41,3 +43,15 @@ class SignUpView(FormView):
             login(request=self.request, user=user)
             user.verify_email()
         return super().form_valid(form)
+
+
+def complete_email_verification(request, token):
+    hashed_token = hashlib.sha224(b"{token}").hexdigest()
+    try:
+        user = models.User.objects.get(email_token=hashed_token)
+        user.email_verified = True
+        user.email_token = ""
+        user.save()
+    except models.User.DoesNotExist:
+        pass
+    return redirect(reverse("core:home"))
