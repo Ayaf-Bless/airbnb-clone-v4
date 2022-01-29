@@ -1,7 +1,7 @@
 import hashlib
 import os
-
 import requests
+from django.core.files.base import ContentFile
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, reverse
 from django.urls import reverse_lazy
@@ -161,10 +161,13 @@ def kakao_callback(request):
         except models.User.DoesNotExist:
             user = models.User.objects.create(username=email,
                                               first_name=nickname,
-                                              avatar=image,
                                               email=email,
                                               login_method=models.User.LOGIN_KAKAO, email_verified=True)
             user.set_unusable_password()
+            user.save()
+            if image:
+                photo_request = requests.get(image)
+                user.avatar.save(f"{nickname}-avatar", ContentFile(photo_request.content))
         login(request, user)
         return redirect(reverse("core:home"))
     except KakaoException:
