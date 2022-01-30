@@ -6,7 +6,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, reverse
 from django.urls import reverse_lazy
 from django.views.generic import FormView
-
 from . import forms, models
 
 

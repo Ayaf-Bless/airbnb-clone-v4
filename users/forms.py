@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
 from . import models
 
@@ -23,25 +24,8 @@ class LoginForm(forms.Form):
             self.add_error("email", forms.ValidationError("User does not exist"))
 
 
-class SignUpForm(forms.ModelForm):
-    class Meta:
-        model = models.User
-        fields = ["first_name", "last_name", "email"]
-
-    password = forms.CharField(widget=forms.PasswordInput)
-    password_confirm = forms.CharField(
-        widget=forms.PasswordInput, label="confirm password"
-    )
-
-    def clean_password_confirm(self):
-        password = self.cleaned_data.get("password")
-        password_confirm = self.cleaned_data.get("password_confirm")
-
-        if password != password_confirm:
-            raise forms.ValidationError("your passwords do not match")
-        else:
-            return password
-
+class SignUpForm(UserCreationForm):
+    email = forms.EmailField()
     # def save(self):
     #     first_name = self.cleaned_data.get("first_name")
     #     last_name = self.cleaned_data.get("last_name")
