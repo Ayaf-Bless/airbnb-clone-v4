@@ -8,7 +8,7 @@ const css = () => {
 
   return gulp
     .src("assets/scss/style.scss")
-    .pipe(sass().once("error", sass.logError))
+    .pipe(sass().on("error", sass.logError))
     .pipe(postCSS([require("tailwindcss"), require("autoprefixer")]))
     .pipe(minify())
     .pipe(gulp.dest("static/css"));
