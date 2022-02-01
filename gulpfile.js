@@ -9,7 +9,7 @@ const css = () => {
   return gulp
     .src("assets/scss/style.scss")
     .pipe(sass().on("error", sass.logError))
-    .pipe(postCSS([require("tailwindcss"), require("autoprefixer")]))
+    .pipe(postCSS([require("autoprefixer"), require("tailwindcss")]))
     .pipe(minify())
     .pipe(gulp.dest("static/css"));
 };
