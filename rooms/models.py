@@ -1,6 +1,7 @@
 from django.db import models
-from django_countries.fields import CountryField
 from django.urls import reverse
+from django_countries.fields import CountryField
+
 # own imports
 from core import models as core_model
 from users import models as users_model
@@ -86,3 +87,7 @@ class Room(core_model.Core):
         if len(all_reviews) != 0:
             return round(all_ratings / len(all_reviews), 2)
         return 0
+
+    def first_photo(self):
+        photo, = self.photos.all()[:1]
+        return photo.file.url

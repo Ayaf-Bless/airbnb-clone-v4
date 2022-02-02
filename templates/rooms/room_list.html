@@ -5,11 +5,10 @@
 {% endblock page_name %}
 
 {% block content %}
+<div class="container mx-auto">
     <div class="rounded-xl bg-gray-800  -mx-40  h-50vh mt-32 mb-24 bg-cover bg-center" style="background-image:url({% static 'image/bg.jpeg' %});"></div>
     {%for room in object_list%}
-    <h4>
-        <a href="{% url 'rooms:detail' room.pk %}">{{room.name}}</a>
-    </h4>
+              {% include "mixins/room_card.html" with room=room %}
     {% endfor %}  
     <h5>
         {% if page_obj.has_previous  %}
@@ -21,6 +20,6 @@
         {% endif %}   
     </h5>
     
-   
+</div>
 {% endblock content %}
 
