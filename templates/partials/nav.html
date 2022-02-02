@@ -1,13 +1,13 @@
-    <ul class="flex items-center text-sm font-medium capitalize">
-        <li class="ml-5">
+    <ul class="flex items-center text-sm font-medium capitalize h-full">
+        <li class="nav_link">
             {% if user.is_authenticated %}
             <a href="{% url "users:logout"%}">Logout</a>
             {% else %}
         </li>
-        <li class="ml-5 border-b-2 border-b-white hover:border-b-blue-400">
-            <a href="{% url "users:login"%}" >Login</a>
+        <li class="nav_link">
+            <a  href="{% url "users:login"%}" >Login</a>
         </li>
-          <li class="ml-5">
+        <li class="nav_link">
               <a href="{% url "users:signup"%}">Sign up</a>
           </li> 
             {% endif %}
