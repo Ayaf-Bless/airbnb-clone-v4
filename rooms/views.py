@@ -9,7 +9,7 @@ from django_countries import countries
 
 class HomeView(ListView):
     model = room_models.Room
-    paginate_by = 10
+    paginate_by = 12
     ordering = "created_at"
     paginate_orphans = 5
 
